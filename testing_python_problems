@@ -1,0 +1,62 @@
+# Python porblem from Assessment 
+
+
+def count_char(st):
+    if not st:
+        return ""
+    result =[]
+    current_char = st[0]
+    count = 1
+    for char in st[1:]:
+        if char == current_char:
+            count += 1
+        else:
+            result.append(f"{current_char}{count}")
+            current_char = char
+            count = 1
+
+    result.append(f"{current_char}{count}")
+
+    return "".join(result)
+
+
+
+def sum_golden_numbers_in_range(start, end):
+    golden_numbers = [num for num in range(start, end + 1) if is_golden_number(num)]
+    return sum(golden_numbers)
+
+def is_golden_number(num):
+    # Convert the number to a string to work with individual digits
+    num_str = str(num)
+    # Check if the number has at least two digits
+    if len(num_str) < 2:
+        return False
+   # Convert each digit to an integer
+    digits = [int(digit) for digit in num_str]
+    # Calculate the sum of all digits
+    digit_sum = sum(digits)
+    # Find the maximum digit
+    max_digit = max(digits)
+    # Calculate the "golden number"
+    golden_number = digit_sum - max_digit
+    # Check if the golden number is equal to the largest digit
+    return golden_number == max_digit
+
+
+def main():
+    # You can put your code to get user input or process data here
+    input_str = input("Enter a string: ")
+    output_str = count_char(input_str)
+    print(f"Result: {output_str}")
+
+    # Calculate and print the sum of golden numbers in the specified range
+    # Define the range
+    start_range = int(input("enter starting point: "))
+    end_range = int(input("last  number of range : "))
+
+    total_sum = sum_golden_numbers_in_range(start_range, end_range)
+    print(f"The sum of golden numbers in the range ({start_range}, {end_range}) is: {total_sum}")
+
+
+if __name__ == "__main__":
+    main()
